@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import filedialog # Importamos la herramienta para buscar archivos 📁
+from tkinter import filedialog # Importamos la herramienta para buscar archivos 
 from PIL import Image, ImageTk # Necesitarás instalar pillow: pip install pillow
 from tkinter import ttk
 from logicaPart1 import calculo_final # Nuestro .py que hace el calculo del area entre curvas
@@ -54,7 +54,7 @@ tramo_actual_g = 0
 extremos_f = []         # Guardará los (x,y) de los cortes: (a,f(a)), (e,f(e)), etc.
 nodos_internos_f = []   # Será una matriz: [[nodos tramo 1], [nodos tramo 2], ...]
 
-# Estructuras para g (las usaremos más adelante)
+# Estructuras para g 
 extremos_g = []
 nodos_internos_g = []
 
@@ -93,7 +93,7 @@ def capturarCoordendas(evento):
         valorD.config(state=tk.NORMAL)
         botonConfirmar.config(state=tk.NORMAL)
     elif fase_actual == "capturando_extremos_f":
-        # 1. Transformación matemática (la que ya tienes)
+        # 1. Transformación matemática 
         a, b = float(valorA.get()), float(valorB.get())
         c, d = float(valorC.get()), float(valorD.get())
         xReal = a + ((x_px - x_min_px) / (x_max_px - x_min_px)) * (b - a)
@@ -179,7 +179,7 @@ def confirmar_intervalos():
         botonIniciarF.config(state=tk.NORMAL)
         
     except ValueError:
-        solicitudDimesionesRectangulo.config(text="⚠️ Error: Llena todos los campos [a,b] y [c,d] con números.")
+        solicitudDimesionesRectangulo.config(text=" Error: Llena todos los campos [a,b] y [c,d] con números.")
 
 # Captura de datos de f
 def iniciar_captura_f():
@@ -248,7 +248,7 @@ def siguiente_tramo_g():
     else:
         fase_actual = "captura_finalizada"
         solicitudDimesionesRectangulo.config(
-            text="¡Captura completa! 🥳 Presiona 'Calcular Área' en el panel derecho."
+            text="¡Captura completa!  Presiona 'Calcular Área' en el panel derecho."
         )
         botonSiguienteTramo.config(state=tk.DISABLED)
         botonCalcular.config(state=tk.NORMAL)
@@ -263,22 +263,22 @@ def calcular_area_final():
         
         # Actualizamos la interfaz con el resultado
         labelResultado.config(text=f"Área ≈ {area_aproximada:.4f} u²")
-        solicitudDimesionesRectangulo.config(text="¡Cálculo finalizado con éxito! 🚀")
+        solicitudDimesionesRectangulo.config(text="¡Cálculo finalizado con éxito! ")
         
     except Exception as e:
-        labelResultado.config(text="⚠️ Error matemático")
+        labelResultado.config(text=" Error matemático")
         print(f"Error al calcular el área: {e}")
 
-# ==========================================
-# INTERFAZ GRÁFICA (Ventana y Marcos)
-# ==========================================
+
+# Interfaz Grafica (Ventana y los marcos)
+
 
 root = tk.Tk()
 root.title("Cálculo de Área con Interpolación")
 # Hacemos la ventana más ancha para que quepa el panel de control (ej. 1000x600)
 root.geometry("1000x600") 
 
-# --- 1. CREACIÓN DE LOS MARCOS PRINCIPALES ---
+# Creación de los marcos principales
 
 # Marco Izquierdo (Ocupará el espacio principal para la gráfica)
 # expand=True y fill=tk.BOTH hacen que ocupe todo el espacio disponible a la izquierda
@@ -292,7 +292,7 @@ marco_derecho.pack(side=tk.RIGHT, fill=tk.Y, padx=10, pady=10)
 marco_derecho.pack_propagate(False) 
 
 
-# --- 2. ELEMENTOS DEL MARCO IZQUIERDO ---
+# Elementos del marco izq
 
 # Etiqueta de instrucciones (Ahora vive en marco_izquierdo)
 solicitudDimesionesRectangulo = tk.Label(marco_izquierdo, text="Paso 1: Carga una imagen para comenzar.", font=("Arial", 10, "bold"))
@@ -308,13 +308,13 @@ botonCargado = tk.Button(marco_izquierdo, text="Cargar Imagen", command=seleccio
 botonCargado.pack(pady=10)
 
 
-# --- 3. ELEMENTOS DEL MARCO DERECHO (Próximo paso) ---
+# Elementos del Marco Derecho
 # Aquí pondremos más adelante las entradas de a,b,c,d y los botones de f y g...
 tk.Label(marco_derecho, text="Panel de Control", font=("Arial", 12, "bold")).pack(pady=10)
 
-# ==========================================
-# SECCIÓN 1: Intervalos Globales
-# ==========================================
+
+# Seccion 1: Intervalos Globales
+
 tk.Label(marco_derecho, text="1. Definir Intervalos [a,b]x[c,d]", font=("Arial", 9, "bold")).pack(pady=(5, 0))
 
 # Usamos un mini-marco para organizar a,b,c,d en cuadrícula
@@ -356,7 +356,7 @@ botonIniciarG.pack(fill=tk.X, pady=2)
 
 
 # ==========================================
-# SECCIÓN 3: Subintervalos Dinámicos
+# Seccion 2: Subintervalos Dinámicos
 # ==========================================
 tk.Label(marco_derecho, text="3. Subintervalos", font=("Arial", 9, "bold")).pack(pady=(15, 0))
 
@@ -369,7 +369,7 @@ combo_subintervalos.current(0) # Inicia en "1"
 combo_subintervalos.grid(row=0, column=1, padx=5)
 
 # ==========================================
-# SECCIÓN 4: Resultados (Debajo de la Sección 3)
+# Seccion 3: Resultados 
 # ==========================================
 tk.Label(marco_derecho, text="4. Resultado", font=("Arial", 9, "bold")).pack(pady=(15, 0))
 
@@ -381,9 +381,7 @@ botonCalcular.pack(fill=tk.X, pady=5, padx=5)
 labelResultado = tk.Label(marco_derecho, text="Área: --", font=("Arial", 12, "bold"), fg="blue")
 labelResultado.pack(pady=10)
 
-# ==========================================
-# BUCLE PRINCIPAL
-# ==========================================
+# Bucle principal
 root.mainloop()
 
 print("--- DATOS CAPTURADOS ---")

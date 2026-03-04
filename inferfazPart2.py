@@ -5,9 +5,7 @@ import math
 import numpy as np # Necesitamos numpy para hablar con logicaPart2
 from logicaPart2 import calcular_spline_figura 
 
-# ==========================================
-# VARIABLES GLOBALES Y DATOS POR DEFECTO
-# ==========================================
+#Variables globales y valores por default
 
 nodos_exterior = [(47.33, 68.0), (43.16, 66.5), (39.0, 62.5), (36.33, 56.75), 
                   (35.83, 51.0), (36.5, 44.75), (39.0, 38.25), (43.66, 34.5), 
@@ -26,9 +24,8 @@ custom_int = []
 # Variable para guardar el área entre pasos
 area_calculada_global = 0.0 
 
-# ==========================================
-# FUNCIONES MATEMÁTICAS Y DE ESCALA
-# ==========================================
+# Funciones matematicas y de escala 
+
 def math_a_px(x_real, y_real):
     x_px = (x_real / 100.0) * 600
     y_px = 400 - ((y_real / 100.0) * 400)
@@ -48,9 +45,7 @@ def ordenar_puntos_por_angulo(puntos):
         return math.atan2(punto[1] - cy, punto[0] - cx)
     return sorted(puntos, key=angulo)
 
-# ==========================================
-# FLUJO DE GRAFICACIÓN Y CÁLCULO
-# ==========================================
+# Flujo de graficacion y calculo
 def cargar_imagen_y_nodos():
     try:
         img_original = Image.open("Sin título.png") 
@@ -113,15 +108,14 @@ def graficar_curvas():
 def calcular_area():
     # Solo mostramos la variable que calculamos en la función anterior
     labelResultado.config(text=f"Área ≈ {area_calculada_global:.4f} u²")
-    labelInfo.config(text="¡Cálculo finalizado con éxito! 🎉")
+    labelInfo.config(text="¡Cálculo finalizado con éxito! ")
     
     if modo_actual == "default":
         botonCargarPropia.config(state=tk.NORMAL)
         labelInfo.config(text="¡Puedes cargar tu propia imagen ahora!")
 
-# ==========================================
-# FLUJO 2: IMAGEN PROPIA (CUSTOM)
-# ==========================================
+# Flujo de imagen propia (subida por el user)
+
 def iniciar_flujo_propio():
     global modo_actual, fase_custom, custom_ext, custom_int
     ruta = filedialog.askopenfilename()
@@ -180,9 +174,8 @@ def cerrar_curva_interior():
     botonGraficar.config(state=tk.NORMAL)
     labelInfo.config(text="¡Captura lista! Presiona 'Graficar Curvas'.")
 
-# ==========================================
-# INTERFAZ GRÁFICA
-# ==========================================
+# Interfaz grafica
+
 root = tk.Tk()
 root.title("Cálculo de Área - Curvas Cerradas con Splines")
 root.geometry("900x550") 
