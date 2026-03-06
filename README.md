@@ -1,4 +1,4 @@
-# Librerías requeridasPrevio a la ejecución de los módulos de área entre curvas (funciones y figuras cerradas), asegúrate de tener instaladas las siguientes librerías de Python:
+# Librerías requeridas Previo a la ejecución de los módulos de área entre curvas (funciones y figuras cerradas), asegúrate de tener instaladas las siguientes librerías de Python:
 
 * tkinter (usualmente preinstalada con Python)
 * Pillow (PIL)
